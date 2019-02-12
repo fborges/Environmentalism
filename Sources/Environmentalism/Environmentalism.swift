@@ -91,6 +91,11 @@ public struct Environment {
     }
   }
   
+  /// Flushes all key-value pairs into environment variables.
+  public func commit() {
+    env.forEach { (key, value) in
+      setenv(key, value, 1)
+    }
   }
   
   
