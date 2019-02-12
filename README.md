@@ -1,3 +1,3 @@
 # Environmentalism
 
-A description of this package.
+Simple package that loads variables from your DotEnv files. 
