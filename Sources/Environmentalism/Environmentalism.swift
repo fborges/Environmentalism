@@ -50,8 +50,47 @@ public struct Environment {
     try loadEnvironment(contents: contents)
   }
   
-  func loadEnvironment(_ filename: String) throws {
-    print(FileManager.default.currentDirectoryPath)
+  /**
+   Parses the raw contents of the loaded file. (bare simple parser, yet to be improved and modularized).
+   
+   - Parameter contents: the raw string containing the contents of the DotEnv file.
+   
+   - Throws: `EnvError.InvalidFormat`
+             if any line seems to escape the format 'KEY=VALUE'.
+  */
+  mutating func loadEnvironment(contents: String) throws {
+    let lines = contents.split(separator:  "\n")
+    try lines.forEach { (line) in
+      
+      // Ignore comments
+      if line[line.startIndex] == "#" {
+        return
+      }
+      
+      // Ignore empty lines
+      if line.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
+        return
+      }
+      
+      let parts = line.split(separator: "=", maxSplits: 1)
+      
+      if parts.count != 2 {
+        throw EnvError.InvalidFormat
+      }
+      
+      let key = parts[0].trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+      var value = parts[1].trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+      
+      if value[value.startIndex] == "\"" && value[value.index(before: value.endIndex)] == "\"" {
+        value.remove(at: value.startIndex)
+        value.remove(at: value.index(before: value.endIndex))
+        value = value.replacingOccurrences(of:"\\\"", with: "\"")
+      }
+      
+      env[key] = value
+    }
+  }
+  
   }
   
   
