@@ -33,6 +33,21 @@ public struct Environment {
     try loadEnvironment(contents: contents)
   }
   
+  /**
+   Creates an Environment with an absolute URL.
+   
+   - Parameter url: the absolute url that must refer to an existing DotEnv file.
+   
+   - Throws: `EnvError.FileNotFound`
+             if `url` doesn't correspond to an existing file.
+  */
+  public init(url: URL) throws {
+    if !FileManager.default.fileExists(atPath: url.path) {
+      throw EnvError.FileNotFound
+    }
+    
+    let contents = try String(contentsOf: url, encoding: .utf8)
+    try loadEnvironment(contents: contents)
   }
   
   func loadEnvironment(_ filename: String) throws {
