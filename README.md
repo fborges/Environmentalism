@@ -1,4 +1,7 @@
 # Environmentalism
+[![Build Status](https://travis-ci.org/fborges/Environmentalism.svg?branch=master)](https://travis-ci.org/fborges/Environmentalism)
+![](https://img.shields.io/github/license/fborges/Environmentalism.svg?style=flat)
+![](https://img.shields.io/github/release/fborges/Environmentalism.svg?style=flat)
 
 Simple package that loads variables from your DotEnv files. 
 
