@@ -109,4 +109,8 @@ public struct Environment {
     return env[key]
   }
   
+  /// Returns all key-value pairs as a Dictionary.
+  public func all() -> [String : String] {
+    return env
+  }
 }
