@@ -98,5 +98,15 @@ public struct Environment {
     }
   }
   
+  /**
+   Fetches value from Environment instance for a given key.
+   
+   - Parameter key: the key (?) <- don't document like this.
+   
+   - Returns: An optional String, which comes nil if no such key exists.
+  */
+  public subscript(key: String) -> String? {
+    return env[key]
+  }
   
 }
