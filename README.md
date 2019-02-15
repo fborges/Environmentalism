@@ -52,8 +52,7 @@ env.commit()
 
 ## Further improvements
 
-... I'll think about this later.
-
+See [Issues](https://github.com/fborges/Environmentalism/issues?q=is%3Aissue+is%3Aopen+label%3AFeature).
 ## License
 
 [MIT License](https://github.com/fborges/Environmentalism/blob/master/LICENSE)
